@@ -24,7 +24,7 @@ public class SessionHandler {
         if (request.getCookies() != null) {
             for (Cookie c : request.getCookies()) {
                 if ("SESSION".equals(c.getName())) {
-                    logger.info("Session Cookie: " + c);
+                    logger.info("Session Cookie: " + c.getValue());
                     return c.getValue();
                 }
             }
@@ -44,8 +44,12 @@ public class SessionHandler {
 
     }
 
-    public String getSessionValue(String key) {
-
-        return (String) request.getSession().getAttribute(key);
+    public void addSessionValue(String key, Object value) {
+        request.getSession().setAttribute(key, value);
     }
+
+    public Object getSessionValue(String key) {
+        return request.getSession().getAttribute(key);
+    }
+
 }

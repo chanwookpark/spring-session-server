@@ -17,8 +17,9 @@ public class Server1Controller {
 
         final SessionHandler handler = new SessionHandler(req);
 
-        handler.addSessionValue("s1");
+        handler.addSessionValue("p");
+        String value = (String) handler.getSessionValue("p");
 
-        return "ok (sid: " + handler.getSessionCookie() + ")";
+        return "ok (sid: " + handler.getSessionCookie() + ", param is " + value + ")";
     }
 }
